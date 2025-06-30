@@ -3,13 +3,21 @@ package com.project.javaSpringBoot.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Product implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private Integer quantity;
-	private Double price;
+	private String price;
 
 	public Product() {
 	}
@@ -19,7 +27,7 @@ public class Product implements Serializable{
 		this.id = id;
 		this.name = name;
 		this.quantity = quantity;
-		this.price = price;
+		this.price = "R$" + price.toString();
 	}
 
 	public Long getId() {
@@ -46,11 +54,11 @@ public class Product implements Serializable{
 		this.quantity = quantity;
 	}
 
-	public Double getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(Double price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 
